@@ -3,6 +3,7 @@ import { Provider } from '@tarojs/mobx'
 import Index from './pages/index/index'
 
 import allStore from './store'
+import {setGlobal} from './util/globalData'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -35,7 +36,10 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    console.log(1)
+    // 设置全局变量
+    setGlobal('url','https://test-miniapp.ypshengxian.com')
     Taro.checkSession({
       success:function(){
         console.log(1)
@@ -49,12 +53,6 @@ class App extends Component {
     })
     this.wxLogin()
   }
-
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentDidCatchError () {}
 
   wxLogin(){
     

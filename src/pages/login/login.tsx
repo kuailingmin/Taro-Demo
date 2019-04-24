@@ -4,6 +4,7 @@ import { View, Input } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtButton,AtMessage } from 'taro-ui'
 import loginStore from '../../store/loginStore'
+
 import './login.scss'
 
 type loginStateProps = {
@@ -53,9 +54,7 @@ class Login extends PureComponent {
   }
   // 登录操作
   loginEvent () {
-    let account = this.props.loginStore.account
-    let passWord = this.props.loginStore.passWord
-    this.props.loginStore.loginEvent(account, passWord)
+    this.props.loginStore.loginEvent()
   }
   render () {
     return (

@@ -7,15 +7,16 @@ class indexStore {
   tabList = [
     { 
       title: '首页', 
-      image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png', 
-      selectedImage: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png', 
-      text: 'new' 
+      image: 'https://ss1.ypshengxian.com/wxapp/cgb/my.png', 
+      selectedImage: 'https://ss1.ypshengxian.com/wxapp/cgb/my_sel.png', 
+      text: '' 
     },
     { title: '我的账号', 
-      image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-      selectedImage:''
+      image: 'https://ss1.ypshengxian.com/wxapp/cgb/home.png',
+      selectedImage:'https://ss1.ypshengxian.com/wxapp/cgb/home_sel.png'
     }
   ]
+  @observable
   itemList = [
     {
       title: '采购计划',

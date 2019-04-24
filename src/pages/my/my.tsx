@@ -4,15 +4,18 @@ import { observer, inject } from '@tarojs/mobx'
 import { View} from '@tarojs/components'
 import { AtTabBar } from 'taro-ui'
 import myStore from '../../store/myStore'
+import indexStore from '../../store/indexStore'
 
 type myStateProps = {
-    myStore: myStore
+    myStore: myStore,
+    indexStore: indexStore
 }
 interface My {
     props: myStateProps
 }
 
 @inject('myStore')
+@inject('indexStore')
 @observer
 class My extends PureComponent{
     config: Config = {
@@ -40,7 +43,7 @@ class My extends PureComponent{
           <View>
                <AtTabBar
                   fixed
-                  tabList={this.props.myStore.tabList}
+                  tabList={this.props.indexStore.tabList}
                   onClick={this.handleClick.bind(this)}
                   current={this.state.current}
                 />

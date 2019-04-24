@@ -1,24 +1,27 @@
 import {action, observable } from 'mobx'
 import Taro from '@tarojs/taro'
-
+import {isPoneAvailable,interceptor} from '../util/utils'
+import {getGlobal} from '../util/globalData'
 class loginStore {
-  @observable
   // 账号
-  account:string = ''
+  @observable account:string = ''
   // 密码
-  passWord:string = ''
+  @observable passWord:string = ''
 
   // 登录事件
   @action
-  loginEvent= (account:string,passWord:string) =>{
-    if(account === ''){
+  loginEvent= () =>{
+    console.log(this.account)
+    let isph = isPoneAvailable(this.account)
+    console.log(isph)
+    if(this.account === ''){
       Taro.atMessage({
         'message': '账号不能为空',
         'type': 'error',
       })
       return false
     }
-    if(passWord === '') {
+    if(this.passWord === '') {
       Taro.atMessage({
         'message': '密码不能为空',
         'type': 'error',
@@ -26,14 +29,26 @@ class loginStore {
       return false
     }
     
-    Taro.login({
-      success: function(res){
-        console.log(res)
-      }
-    })
+    Taro.addInterceptor(interceptor)
 
-     console.log(account)
-     console.log(passWord)
+    Taro.request({
+      url: getGlobal('url') + '/shopRead/getCityFirstShopAndNearByShopList',
+      data: {
+        cityCode: ''
+      },
+      header: {
+        'content-type': 'application/json'
+      }
+    }).then(res => console.log(res.data))
+    
+    // Taro.login({
+    //   success: function(res){
+    //     console.log(res)
+    //     Taro.reLaunch({
+    //       url:'/pages/index/index?id=1'
+    //     })
+    //   }
+    // })
   }
 }
 

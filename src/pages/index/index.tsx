@@ -26,7 +26,9 @@ class Index extends PureComponent {
           current: 0
         }
     }
-
+    componentWillMount(){
+      console.log(this.$router.params)
+    }
     handleClick(value){
       if(value === 1){
         Taro.reLaunch({
