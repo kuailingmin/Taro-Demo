@@ -1,0 +1,23 @@
+@import "../../styles/mix.scss";
+@import "../../styles/com.scss";
+.getPlan{
+   padding: 0 30px;
+   .header{
+     @include flex_two;
+     .typebtn{
+        @include flex_three;
+        width:180px;
+        height:60px;
+        line-height: 60px;
+        background:#EBE7FB;
+        border-radius:30px;
+        text-align: center;
+        font-size: $fontSize;
+        color: $fontColor;
+     }
+     .count{
+        color: $fontColor;
+        font-size: $fontSize;
+     }
+   }
+}

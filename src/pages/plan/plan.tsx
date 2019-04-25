@@ -15,7 +15,7 @@ class Plan extends PureComponent{
     }
     render() {
         return(
-           <View className='plan'>
+           <View className='planIndex'>
                <AtButton type='primary' className='btn'>获取采购计划</AtButton>
                <AtButton type='secondary'>制定采购计划</AtButton>
            </View>

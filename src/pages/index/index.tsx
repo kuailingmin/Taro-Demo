@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import Taro, { PureComponent,Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
-import { AtTabBar } from 'taro-ui'
+import { AtTabBar} from 'taro-ui'
 import indexStore from '../../store/indexStore'
 import Login from '../login/login'
 import './index.scss'
@@ -44,7 +44,6 @@ class Index extends PureComponent {
       })
     }
     itemEvent(index:number){
-      console.log(index)
       switch(index){
         case 1:
          Taro.navigateTo({
@@ -64,7 +63,7 @@ class Index extends PureComponent {
         })
         return (
             <View >
-              {!this.state.isHidden && <Login />} 
+              {!this.state.isHidden && <Login />}
               {this.state.isHidden && <View>
                 <View className='itemdiv'>
                   {items}

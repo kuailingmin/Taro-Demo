@@ -4,3 +4,13 @@
     flex-direction: column;
     align-items: center;
 }
+@mixin flex_two {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin flex_three {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
