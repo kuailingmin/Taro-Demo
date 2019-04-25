@@ -1,9 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import Index from './pages/index/index'
-
 import allStore from './store'
 import {setGlobal} from './util/globalData'
+import Index from './pages/index/index'
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -25,6 +24,7 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/index/index',
+      'pages/plan/plan',
       'pages/login/login',
       'pages/my/my'
     ],
@@ -37,25 +37,19 @@ class App extends Component {
   }
 
   componentWillMount () {
-    console.log(1)
-    // 设置全局变量
-    setGlobal('url','https://test-miniapp.ypshengxian.com')
-    Taro.checkSession({
-      success:function(){
-        console.log(1)
-      },
-      fail:function(){
-        console.log(2)
-        Taro.reLaunch({
-          url:'/pages/login/login'
-        })
-      }
-    })
-    this.wxLogin()
+    this.globalData()
   }
-
-  wxLogin(){
-    
+  
+  //设置全局变量
+  globalData(){
+    //设置http
+    setGlobal('url','http://10.0.1.238:8091/cgb')
+    //设置登录状态
+    console.log('登录')
+    if(Taro.getStorageSync('loginStatus') === ''){
+      Taro.setStorageSync('loginStatus',false)
+    }
+   
   }
 
   // 在 App 类中的 render() 函数没有实际作用

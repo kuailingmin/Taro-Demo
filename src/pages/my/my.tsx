@@ -1,7 +1,7 @@
 import { ComponentType } from 'react'
 import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { observer, inject } from '@tarojs/mobx'
-import { View} from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtTabBar } from 'taro-ui'
 import myStore from '../../store/myStore'
 import indexStore from '../../store/indexStore'

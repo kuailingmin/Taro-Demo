@@ -29,7 +29,11 @@ class Login extends PureComponent {
   config: Config = {
     navigationBarTitleText: '采购宝'
   }
+  data = {
+    
+  }
   componentWillMount () {
+   
   }
 
   componentWillReact () {
@@ -46,7 +50,6 @@ class Login extends PureComponent {
   // 获取输入的账号
   getInputPhone (e) {
     this.props.loginStore.account = e.detail.value
-    console.log(this.props.loginStore.account)
   }
   // 获取密码
   getPassWord (e) {

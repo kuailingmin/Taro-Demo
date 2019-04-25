@@ -4,6 +4,7 @@ import { View, Text, Image } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtTabBar } from 'taro-ui'
 import indexStore from '../../store/indexStore'
+import Login from '../login/login'
 import './index.scss'
 
 type indexStateProps = {
@@ -23,11 +24,14 @@ class Index extends PureComponent {
     constructor(){
         super(...arguments)
         this.state = {
-          current: 0
+          current: 0,
+          isHidden: false
         }
     }
     componentWillMount(){
-      console.log(this.$router.params)
+      this.setState({
+        isHidden: Taro.getStorageSync('loginStatus')
+      })
     }
     handleClick(value){
       if(value === 1){
@@ -39,27 +43,40 @@ class Index extends PureComponent {
         current: value
       })
     }
+    itemEvent(index:number){
+      console.log(index)
+      switch(index){
+        case 1:
+         Taro.navigateTo({
+           url:'/pages/plan/plan'
+         })
+      }
+    }
 
     render(){
         const items = this.props.indexStore.itemList.map((item, index) => {
             return (
-                <View className='item' key={String(index)}>
+                <View className='item' key={String(index)} onClick={this.itemEvent.bind(this,item.index)}>
                  <Image style='width: 70px;height: 56px;background: #fff;' src={item.image} ></Image>
                  <Text className='txt'>{item.title}</Text>
                 </View>
             )
         })
         return (
-            <View>
-              <View className='itemdiv'>
-                {items}
+            <View >
+              {!this.state.isHidden && <Login />} 
+              {this.state.isHidden && <View>
+                <View className='itemdiv'>
+                  {items}
+                </View>
+                <AtTabBar
+                    fixed
+                    tabList={this.props.indexStore.tabList}
+                    onClick={this.handleClick.bind(this)}
+                    current={this.state.current}
+                  />
               </View>
-              <AtTabBar
-                  fixed
-                  tabList={this.props.indexStore.tabList}
-                  onClick={this.handleClick.bind(this)}
-                  current={this.state.current}
-                />
+              }
             </View>
           
         )

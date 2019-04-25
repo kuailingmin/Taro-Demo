@@ -1,11 +1,11 @@
 //全局变量
 const globalData = {}
 interface globalConfig{
-   (key:string,val?:string)
+   (key:string,val?:any)
 }
 
 //set操作
-export const setGlobal:globalConfig = (key:string,val:string) => {
+export const setGlobal:globalConfig = (key:string,val:any) => {
     globalData[key] = val
 }
 

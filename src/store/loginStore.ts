@@ -32,23 +32,30 @@ class loginStore {
     Taro.addInterceptor(interceptor)
 
     Taro.request({
-      url: getGlobal('url') + '/shopRead/getCityFirstShopAndNearByShopList',
-      data: {
-        cityCode: ''
+      url: getGlobal('url') + '/login',
+      data:{
+        channel: "CGB_WEB_CHANNEL",
+        login: "33",
+        miniProgramCode: "aaaa",
+        password: "33"
       },
+      method: 'POST',
       header: {
         'content-type': 'application/json'
       }
-    }).then(res => console.log(res.data))
-    
-    // Taro.login({
-    //   success: function(res){
-    //     console.log(res)
-    //     Taro.reLaunch({
-    //       url:'/pages/index/index?id=1'
-    //     })
-    //   }
-    // })
+    }).then(res => {
+      console.log(res.data)
+    })
+    Taro.setStorageSync('loginStatus',true)
+     //登录成功跳转首页
+     Taro.login({
+      success: function(res){
+        console.log(res)
+        Taro.reLaunch({
+          url:'/pages/index/index?id=1'
+        })
+      }
+    })
   }
 }
 
