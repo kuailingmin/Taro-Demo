@@ -10,7 +10,7 @@ class loginStore {
 
   // 登录事件
   @action
-  loginEvent= () =>{
+  loginEvent = () =>{
     console.log(this.account)
     let isph = isPoneAvailable(this.account)
     console.log(isph)

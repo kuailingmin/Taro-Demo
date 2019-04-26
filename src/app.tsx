@@ -23,8 +23,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/getPlan/getPlan',
+      'pages/planInfo/planInfo',
       'pages/index/index',
+      'pages/getPlan/getPlan',
+      'pages/setPlan/setPlan',
       'pages/plan/plan',
       'pages/login/login',
       'pages/my/my'

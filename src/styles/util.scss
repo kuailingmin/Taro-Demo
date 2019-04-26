@@ -2,3 +2,6 @@
   @return ($px/2);
 }
 
+@function list-height($h){
+  @return (100vh-$h)
+}

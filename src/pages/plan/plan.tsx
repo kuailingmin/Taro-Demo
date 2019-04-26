@@ -8,16 +8,20 @@ class Plan extends PureComponent{
       navigationBarTitleText: '采购计划'
     }
     getPlanEvent(){
-
+      Taro.navigateTo({
+          url:'/pages/getPlan/getPlan'
+      })
     }
     setPlanEvent(){
-        
+      Taro.navigateTo({
+          url:'/pages/setPlan/setPlan'
+      })
     }
     render() {
         return(
            <View className='planIndex'>
-               <AtButton type='primary' className='btn'>获取采购计划</AtButton>
-               <AtButton type='secondary'>制定采购计划</AtButton>
+               <AtButton type='primary' className='btn' onClick={this.getPlanEvent} >获取采购计划</AtButton>
+               <AtButton type='secondary' onClick={this.setPlanEvent} >制定采购计划</AtButton>
            </View>
         )
     }
