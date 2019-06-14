@@ -23,10 +23,13 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/planInfo/planInfo',
       'pages/index/index',
+      'pages/purchase/purchase',
+      'pages/addShop/addShop',
+      'pages/purchaseInfo/purchaseInfo',
       'pages/getPlan/getPlan',
       'pages/setPlan/setPlan',
+      'pages/planInfo/planInfo',
       'pages/plan/plan',
       'pages/login/login',
       'pages/my/my'
@@ -46,13 +49,11 @@ class App extends Component {
   //设置全局变量
   globalData(){
     //设置http
-    setGlobal('url','http://10.0.1.238:8091/cgb')
+    setGlobal('url','http://10.0.1.190:8091/cgb')
     //设置登录状态
-    console.log('登录')
     if(Taro.getStorageSync('loginStatus') === ''){
       Taro.setStorageSync('loginStatus',false)
     }
-   
   }
 
   // 在 App 类中的 render() 函数没有实际作用

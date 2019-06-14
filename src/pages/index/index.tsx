@@ -1,10 +1,9 @@
 import { ComponentType } from 'react'
 import Taro, { PureComponent,Config } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, Picker } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
-import { AtTabBar} from 'taro-ui'
+import { AtButton } from 'taro-ui'
 import indexStore from '../../store/indexStore'
-import Login from '../login/login'
 import './index.scss'
 
 type indexStateProps = {
@@ -13,73 +12,70 @@ type indexStateProps = {
 interface Index {
     props: indexStateProps
 }
-  
 
 @inject('indexStore')
 @observer
 class Index extends PureComponent {
     config: Config = {
-      navigationBarTitleText: '采购宝'
+      navigationBarTitleText: '选择采购分类'
     }
     constructor(){
-        super(...arguments)
-        this.state = {
-          current: 0,
-          isHidden: false
-        }
+        super()
     }
     componentWillMount(){
-      this.setState({
-        isHidden: Taro.getStorageSync('loginStatus')
-      })
+      console.log(this.$router.params)
     }
-    handleClick(value){
-      if(value === 1){
-        Taro.reLaunch({
-            url:'/pages/my/my'
-        })
-      }
-      this.setState({
-        current: value
-      })
+    
+    onCityChange = e => {
+      this.props.indexStore.setCity(this.props.indexStore.city[e.detail.value])
     }
-    itemEvent(index:number){
-      switch(index){
-        case 1:
-         Taro.navigateTo({
-           url:'/pages/plan/plan'
-         })
-      }
+    onTypeChange = e => {
+      this.props.indexStore.setType(this.props.indexStore.type[e.detail.value])
+    }
+    onDateChange = e => {
+      this.props.indexStore.setDateSel(e.detail.value)
+      console.log(this.props.indexStore.dateSel)
     }
 
     render(){
-        const items = this.props.indexStore.itemList.map((item, index) => {
-            return (
-                <View className='item' key={String(index)} onClick={this.itemEvent.bind(this,item.index)}>
-                 <Image style='width: 70px;height: 56px;background: #fff;' src={item.image} ></Image>
-                 <Text className='txt'>{item.title}</Text>
-                </View>
-            )
-        })
+        const {city,selectorCity,dateSel,type,selectorType} = this.props.indexStore
+        
         return (
-            <View >
-              {!this.state.isHidden && <Login />}
-              {this.state.isHidden && <View>
-                <View className='itemdiv'>
-                  {items}
+            <View className='index'>
+                <Picker mode='selector' range={city} onChange={this.onCityChange}>
+                    <View className='itemdiv'>
+                          <Text className='txt'>选择城市</Text>
+                          <View className='picker'>
+                                {selectorCity}
+                          </View>
+                    </View>
+                </Picker>
+                <Picker mode='selector' range={type} onChange={this.onTypeChange}>
+                    <View className='itemdiv'>
+                          <Text className='txt'>选择分类</Text>
+                          <View className='picker'>
+                                {selectorType}
+                          </View>
+                    </View>
+                </Picker>
+                <Picker mode='date' onChange={this.onDateChange}>
+                    <View className='itemdiv'>
+                          <Text className='txt'>汇总日期</Text>
+                          <View className='picker'>
+                                {dateSel}
+                          </View>
+                    </View>
+                </Picker>
+                <View className='btncss'>
+                    <AtButton type='primary'>进入采购任务</AtButton>
                 </View>
-                <AtTabBar
-                    fixed
-                    tabList={this.props.indexStore.tabList}
-                    onClick={this.handleClick.bind(this)}
-                    current={this.state.current}
-                  />
-              </View>
-              }
+                <View className='bottomcss'>
+                     <AtButton circle  className='btncom left'>退出登录</AtButton>
+                     <AtButton circle type='secondary' className='btncom right' >按钮文案</AtButton>
+                </View>
             </View>
-          
         )
     }
 }
 
-export default Index as ComponentType
+export default Index as ComponentType<indexStateProps>

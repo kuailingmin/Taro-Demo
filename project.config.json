@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "purchaseApp",
   "description": "采购宝",
-  "appid": "",
+  "appid": "wx19de8b5187973c7a",
   "setting": {
     "urlCheck": true,
     "es6": false,

@@ -1,0 +1,73 @@
+@import "../../styles/mix.scss";
+.type{
+    @include flex_two;
+    padding: 0 30px;
+    margin-top: 30px;
+    .left-div{
+        @include flex_two;
+    }
+    .left{
+        width:180px;
+        height:60px;
+        background:#F1EEFD;
+        border-radius:30px;
+        @include flex_three;
+        .txt{
+            font-size:26px;
+            color: #6A4CFF;
+        }
+    }
+    .right{
+        font-size:26px;
+        color: #6A4CFF;
+    }
+    .mr30{
+        margin-right: 30px;
+    }
+}
+
+.context{
+    padding-left: 30px;
+    margin-top: 30px;
+    .find{
+        @include flex_two;
+        margin:0 30px 30px 0;
+        .left{
+            @include flex_four;
+            height: 60px;
+            background: #F2F2F2;
+            border-radius:30px;
+            .icon{
+              font-size:30px;
+              color: #bbb;
+              margin:5px 10px 0 29px;
+            }
+            .inputfont{
+              font-size:30px;
+              color: #777;
+              width: 100%;
+            }
+        }
+    }
+    .list{
+        padding: 30px 0;
+        border-bottom: 1px solid #E5E5E5;
+        .code{
+            color: #222;
+            font-size: 26px;
+        }
+        .title{
+            font-size: 32px;
+            color: #222;
+            margin:5px 0 23px 0;
+        }
+        .node{
+            @include flex_two;
+            padding-right: 30px;
+            .nodetxt{
+                font-size:26px;
+                color: #777;
+            }
+        }
+    }
+}

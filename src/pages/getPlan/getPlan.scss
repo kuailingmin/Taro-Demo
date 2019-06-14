@@ -70,27 +70,34 @@
        }
        .header_left{
          width:50%;
-         .check{
-           width:36px;
-           height:36px;
-           border-radius:50px;
-         }
          .title{
            color:#222;
+           font-size: 32px;
          }
        }
+       .header_right{
+        @include flex_two;
+          .more{
+            width: 20px;
+            height: 15px;
+            color: #bbb;
+          }
+       }
+      
        .info{
          font-size: $fontSize24;
          color:#bbb;
        }
      }
-     .center,.bottom{
+     .item{
        @include flex_two;
-     }
-     
-     .txt{
+       margin-top: 15px;
+       .txt{
         font-size: $fontSize26;
         color:#777;
+       }
      }
+     
+    
    }
 }

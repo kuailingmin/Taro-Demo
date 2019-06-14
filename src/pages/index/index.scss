@@ -1,22 +1,48 @@
-.itemdiv{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap:wrap;
-    padding: 0 37px;
-    margin-top: 10px;
-    .item{
-      width: 300px;
-      height: 300px;
-      box-shadow: 0px 0px 30px -2px #eee;
-      margin-bottom: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .txt{
-          color: #777;
-          font-size: 28px;
-          margin-top: 40px;
-      }
+@import "../../styles/mix.scss";
+.index{
+  padding: 0 30px;
+  margin-top: 50px;
+  height: 100vh;
+  .itemdiv{
+    @include flex_six;
+    font-size: 28px;
+    padding: 20px 0;
+    .txt{
+      color: #222;
+      height: 50px;
     }
+    .picker{
+      width: 70%;
+      height: 50px;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .btncss{
+    margin-top: 80px;
+    padding: 0 40px;
+  }
+
+  .bottomcss{
+    width: 100%;
+    @include flex_two;
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    z-index: 9;
+    .btncom{
+      width: 280px;
+      height: 70px;
+      line-height: 70px;
+    }
+    .left{
+      margin-left: 30px;
+      border: 1px solid #ddd !important;
+    }
+    .right{
+      margin-right: 30px;
+    }
+  }
 }
+

@@ -1,7 +1,7 @@
 import { ComponentType } from "react"
 import { View,Text } from '@tarojs/components'
 import Taro, { PureComponent, Config } from '@tarojs/taro'
-import { AtButton, AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
+import { AtButton, AtModal } from 'taro-ui'
 
 import { observer, inject } from '@tarojs/mobx'
 
@@ -50,9 +50,9 @@ class PlanInfo extends PureComponent{
         })
     }
     handleConfirmEvent(){
-         console.log(2)
          this.handleCloseEvent()
     }
+   
     render(){
         let countList = this.props.planInfoStore.infoList.map((item,index) => {
             return (
@@ -91,7 +91,6 @@ class PlanInfo extends PureComponent{
                  <View className='main'>
                    <AtButton type='primary' onClick={this.createPlanEvent}>创建采购任务</AtButton>
                  </View>
-                
               </View>
 
               <AtModal 
@@ -101,9 +100,8 @@ class PlanInfo extends PureComponent{
                  onClose={ this.handleCloseEvent }
                  onCancel={ this.handleCloseEvent }
                  onConfirm={ this.handleConfirmEvent }
-                 content='确认创建采购任务？'
+                 content='\n\r确认创建采购任务？'
                >
-               
               </AtModal>
             </View>
         )

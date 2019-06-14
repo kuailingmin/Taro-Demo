@@ -1,0 +1,81 @@
+@import "../../styles/mix.scss";
+.setPlan{
+    padding:30px 30px 180px 30px;
+    .title{
+        font-size:36px;
+        font-weight:bold;
+        color:#222;
+        margin-bottom:15px;
+    }
+    .context{
+        border-radius:10px;
+        background:#F2F2F2;
+        padding:30px 20px;
+        .find{
+          @include flex_two;
+          height: 60px;
+          margin-bottom: 30px;
+          .left{
+              @include flex_four;
+              width: 60%;
+              height: 60px;
+              background: #fff;
+              border-radius:30px;
+              .icon{
+                font-size:30px;
+                color: #bbb;
+                margin:5px 10px 0 29px;
+              }
+              .inputfont{
+                font-size:30px;
+                color: #777;
+                width: 100%;
+              }
+          }
+        }
+        .list{
+          margin-top: 28px;
+          .li{
+            @include flex_two;
+            margin-bottom: 10px;
+            .li_txt{
+              font-size:22px;
+              color: #777;
+            }
+          }
+        }
+    }
+    .shoplist{
+        @include flex_two;
+        margin-bottom: 30px;
+        .shopname{
+           @include flex_two;
+           .name{
+             font-size: 26px;
+             color: #555;
+           }
+           .close{
+             color: #FF4C4D;
+             font-size: 30px;
+             margin-right: 19px;
+           }
+        }
+
+    }
+    .counts{
+        width: 30%;
+        height: 60px;
+        border-radius: 30px;
+        background: #fff;
+        @include flex_three;
+        .inp_counts{
+            width: 80%;
+            height: 40px;
+            font-size: 26px;
+        }
+    }
+    .footer{
+        z-index: 9;
+        @include footer;
+    }
+}

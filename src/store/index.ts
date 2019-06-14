@@ -9,6 +9,8 @@ import setPlanStore from './plan/setPlanStore'
 import planInfoStore from './plan/planInfoStore'
 // 我的
 import myStore from './myStore'
+// 采购任务
+import purchaseStore from './purchase/purchaseStore'
 
 export default {
   loginStore: new loginStore(),
@@ -16,5 +18,6 @@ export default {
   myStore: new myStore(),
   getPlanStore: new getPlanStore(),
   setPlanStore: new setPlanStore(),
-  planInfoStore: new planInfoStore()
+  planInfoStore: new planInfoStore(),
+  purchaseStore: new purchaseStore()
 }
