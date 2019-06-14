@@ -17,7 +17,6 @@ class indexStore {
   }
   // 汇总日期
   @action setDateSel(v) {
-    console.log(v)
     this.dateSel = v
   }
 }

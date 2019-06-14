@@ -23,16 +23,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index',
       'pages/purchase/purchase',
-      'pages/addShop/addShop',
+      'pages/index/index',
       'pages/purchaseInfo/purchaseInfo',
-      'pages/getPlan/getPlan',
-      'pages/setPlan/setPlan',
-      'pages/planInfo/planInfo',
-      'pages/plan/plan',
-      'pages/login/login',
-      'pages/my/my'
+      'pages/login/login'
     ],
     window: {
       backgroundTextStyle: 'light',

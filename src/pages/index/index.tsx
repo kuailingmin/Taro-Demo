@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import Taro, { PureComponent,Config } from '@tarojs/taro'
-import { View, Text, Image, Picker } from '@tarojs/components'
+import { View, Text, Picker } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import { AtButton } from 'taro-ui'
 import indexStore from '../../store/indexStore'
@@ -25,16 +25,24 @@ class Index extends PureComponent {
     componentWillMount(){
       console.log(this.$router.params)
     }
-    
+    // 选择城市
     onCityChange = e => {
       this.props.indexStore.setCity(this.props.indexStore.city[e.detail.value])
     }
+    // 选择类型
     onTypeChange = e => {
       this.props.indexStore.setType(this.props.indexStore.type[e.detail.value])
     }
+    // 选择日期
     onDateChange = e => {
       this.props.indexStore.setDateSel(e.detail.value)
-      console.log(this.props.indexStore.dateSel)
+    }
+    
+    // 返回登录页
+    goToLogin() {
+      Taro.navigateTo({
+        url:'/pages/login/login'
+      })
     }
 
     render(){
@@ -70,8 +78,8 @@ class Index extends PureComponent {
                     <AtButton type='primary'>进入采购任务</AtButton>
                 </View>
                 <View className='bottomcss'>
-                     <AtButton circle  className='btncom left'>退出登录</AtButton>
-                     <AtButton circle type='secondary' className='btncom right' >按钮文案</AtButton>
+                     <AtButton circle  className='btncom left' onClick={this.goToLogin}>退出登录</AtButton>
+                     <AtButton circle type='secondary' className='btncom right' >采购单查询</AtButton>
                 </View>
             </View>
         )

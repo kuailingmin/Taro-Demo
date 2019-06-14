@@ -51,6 +51,7 @@
     }
     .list{
         padding: 30px 0;
+        margin-left: 30px;
         border-bottom: 1px solid #E5E5E5;
         .code{
             color: #222;
@@ -69,5 +70,10 @@
                 color: #777;
             }
         }
+    }
+    .scrollview{
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
     }
 }
