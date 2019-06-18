@@ -11,7 +11,6 @@ import './icon/iconfont.scss'
 //   require('nerv-devtools')
 // }
 
-
 class App extends Component {
 
   /**
@@ -24,7 +23,12 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/purchase/purchase',
+      'pages/purchaseOrder/purchaseOrder',
       'pages/index/index',
+      'pages/order/order',
+      'pages/shop/shop',
+      'pages/shopConfirm/shopConfirm',
+    
       'pages/purchaseInfo/purchaseInfo',
       'pages/login/login'
     ],

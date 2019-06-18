@@ -4,3 +4,9 @@ $fontSize24: 24px;
 $fontSize26: 26px;
 $fontSize32: 32px;
 
+// 下来滚动组建样式
+.scrollview{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}

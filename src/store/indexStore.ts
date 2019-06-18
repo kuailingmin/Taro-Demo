@@ -1,11 +1,12 @@
 import {action, observable } from 'mobx'
 
 class indexStore {
-  @observable city =  ['合肥', '南京', '上海', '重庆'];
-  @observable type =  ['蔬菜', '水果', '肉类'];
+  @observable city = ['合肥', '南京', '上海', '重庆'];
+  @observable type = ['蔬菜', '水果', '肉类'];
   @observable selectorCity = ''
   @observable selectorType = ''
   @observable dateSel = ''
+  @observable isLogin = false
 
   // 选择城市
   @action setCity(v) {
@@ -18,6 +19,10 @@ class indexStore {
   // 汇总日期
   @action setDateSel(v) {
     this.dateSel = v
+  }
+  // 弹出框
+  @action setLogin(v){
+    this.isLogin = v
   }
 }
 

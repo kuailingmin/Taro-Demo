@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import Taro, { PureComponent,Config } from '@tarojs/taro'
 import { View, Text, Picker } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
-import { AtButton } from 'taro-ui'
+import { AtButton, AtModal } from 'taro-ui'
 import indexStore from '../../store/indexStore'
 import './index.scss'
 
@@ -37,16 +37,35 @@ class Index extends PureComponent {
     onDateChange = e => {
       this.props.indexStore.setDateSel(e.detail.value)
     }
-    
+    // 显示登录提示框
+    showLogin(){
+      this.props.indexStore.setLogin(true)
+    }
+    hiddenLogin(){
+      this.props.indexStore.setLogin(false)
+    }
     // 返回登录页
     goToLogin() {
       Taro.navigateTo({
         url:'/pages/login/login'
       })
+      this.hiddenLogin()
+    }
+    // 去采购任务
+    goToPurchase() {
+      Taro.navigateTo({
+        url:'/pages/purchase/purchase'
+      })
+    }
+    // 采购单查询
+    goToOrder(){
+      Taro.navigateTo({
+        url:'/pages/order/order'
+      })
     }
 
     render(){
-        const {city,selectorCity,dateSel,type,selectorType} = this.props.indexStore
+        const {city,selectorCity,dateSel,type,selectorType,isLogin} = this.props.indexStore
         
         return (
             <View className='index'>
@@ -54,33 +73,49 @@ class Index extends PureComponent {
                     <View className='itemdiv'>
                           <Text className='txt'>选择城市</Text>
                           <View className='picker'>
-                                {selectorCity}
+                             {selectorCity}
                           </View>
                     </View>
                 </Picker>
-                <Picker mode='selector' range={type} onChange={this.onTypeChange}>
+                {
+                  selectorCity !== '' && <Picker mode='selector' range={type} onChange={this.onTypeChange}>
                     <View className='itemdiv'>
                           <Text className='txt'>选择分类</Text>
                           <View className='picker'>
-                                {selectorType}
+                              {selectorType}
                           </View>
                     </View>
-                </Picker>
-                <Picker mode='date' onChange={this.onDateChange}>
-                    <View className='itemdiv'>
-                          <Text className='txt'>汇总日期</Text>
-                          <View className='picker'>
-                                {dateSel}
-                          </View>
-                    </View>
-                </Picker>
+                  </Picker>
+                }
+                {
+                  selectorType !== '' && <Picker mode='date' onChange={this.onDateChange}>
+                      <View className='itemdiv'>
+                            <Text className='txt'>汇总日期</Text>
+                            <View className='picker'>
+                                  {dateSel}
+                            </View>
+                      </View>
+                  </Picker>
+                }
+                
                 <View className='btncss'>
-                    <AtButton type='primary'>进入采购任务</AtButton>
+                    <AtButton type='primary' disabled={dateSel === '' ? true : false} onClick={this.goToPurchase}>进入采购任务</AtButton>
                 </View>
                 <View className='bottomcss'>
-                     <AtButton circle  className='btncom left' onClick={this.goToLogin}>退出登录</AtButton>
-                     <AtButton circle type='secondary' className='btncom right' >采购单查询</AtButton>
+                     <AtButton circle  className='btncom left' onClick={this.showLogin}>退出登录</AtButton>
+                     <AtButton circle type='secondary' className='btncom right' onClick={this.goToOrder} >采购单查询</AtButton>
                 </View>
+
+                <AtModal
+                    isOpened = {isLogin}
+                    title=''
+                    cancelText='取消'
+                    confirmText='确认'
+                    onClose={ this.hiddenLogin }
+                    onCancel={ this.hiddenLogin }
+                    onConfirm={ this.goToLogin }
+                    content='\r\n请确认是否退出登录？'
+                    />
             </View>
         )
     }

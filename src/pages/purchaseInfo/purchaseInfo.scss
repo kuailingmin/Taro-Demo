@@ -1,106 +1,29 @@
 @import "../../styles/mix.scss";
 @import "../../styles/com.scss";
 .purchaseInfo{
-    padding: 50px 30px 180px 30px;
-    .card{
-       border-radius:6px;
-       box-shadow:0px 3px 18px 0px rgba(136,136,136,0.3);
-       padding: 20px 20px 0 20px;
-       .top{
-           @include flex_two;
-           margin-bottom: 13px;
-           .code{
-               font-size: 26px;
-               color: #222;
-           }
-           .close{
-               font-size: 26px;
-               color: #FF4C4D;
-           }
-       }
-       .title{
-           font-size:30px;
-           font-weight:bold;
-           color:#222;
-           margin-bottom:29px;
-       }
-       .list{
-           @include flex_two;
-           .txt{
-               font-size:24px;
-               color:#999;
-               margin-bottom:20px;
-           }
-       }
-    }
-    .goods{
-        @include flex_two;
-        margin: 60px 0 36px 0;
-        .count{
-            font-size:36px;
-            color:#222;
-            font-weight:bold;
-        }
-        .add{
-            width:240px;
-            height:60px;
-            border-radius:30px;
-            background: #F1EEFD;
-            @include flex_three;
-            .icons{
-                margin: 0 8px 6px 0px;
-            }
-            .addtxt{
-                color: $fontColor;
-                font-size:26px;
-            }
-        }
-    }
-    .li{
-        @include flex_two;
-        margin-bottom:30px;
-        .index{
-            width:36px;
-            height:36px;
-            line-height:36px;
-            background:#E5E5E5;
-            border-radius:50%;
-            font-size:24px;
-            font-weight:bold;
-            color:#555;
-            text-align:center;
-            margin-right:20px;
-        }
-        .txt{
-            font-size:28px;
-            color:#555;
-        }
-        .update{
-            color: $fontColor;
-            font-size:28px;
-            margin-left: 30px;
-        }
-        .li_left{
-            @include flex_four;
-        }
-    }
-    .footer{
-        @include footer;
-        .twobtn{
+   .list{
+        padding: 30px 0;
+        margin-left: 30px;
+        border-bottom: 1px solid #E5E5E5;
+        
+        .title{
             @include flex_two;
+            font-size: 30px;
+            color: #222;
+            padding-right: 30px;
+            margin:5px 0 23px 0;
+        }
+        .node{
+            @include flex_two;
+            padding-right: 30px;
+            font-size:26px;
+            color: #777;
             .btn{
-                width: 45%;
+                width:256px;
+                height:64px;
+                line-height: 60px;
             }
         }
     }
-    .update-alert{
-        @include flex_two;
-        font-size:32px;
-        color: #555;
-        padding: 0 37px;
-        .inputfont{
-            width: 50%;
-            text-align: right;
-        }
-    }
+
 }

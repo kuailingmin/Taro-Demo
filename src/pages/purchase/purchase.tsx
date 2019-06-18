@@ -1,18 +1,18 @@
 import { ComponentType } from "react"
 import Taro, { PureComponent, Config } from '@tarojs/taro'
-import { AtTabs,AtIcon,AtActionSheet, AtActionSheetItem } from 'taro-ui'
+import { AtButton, AtModal } from 'taro-ui'
 import { View, Text, Input, ScrollView } from '@tarojs/components'
 import { observer, inject } from '@tarojs/mobx'
 import purchaseStore from '../../store/purchase/purchaseStore'
 
 import './purchase.scss'
 
-type purchaseStateProps = {
+type props = {
     purchaseStore: purchaseStore
 }
 
 interface Purchase {
-    props: purchaseStateProps
+    props: props
 }
 
 @inject('purchaseStore')
@@ -24,7 +24,6 @@ class Purchase extends PureComponent{
     constructor () {
         super()
     }
-
     // 搜索事件
     onInputEvent(){
 
@@ -37,26 +36,58 @@ class Purchase extends PureComponent{
     }
 
     // 跳转详情页
-    goToInfo(){
+    goToInfo(t){
+        this.$preload('name', t)
         Taro.navigateTo({
             url:'/pages/purchaseInfo/purchaseInfo'
         })
     }
+
+    //结束采购操作
+    endEvent(n,v){
+        this.setEndFrame(true)
+        this.props.purchaseStore.setContext(n,v)
+    }
+
+    //结束采购提示框
+    endClose(){
+        this.setEndFrame(false)
+    }
+    endConfirm(){
+        this.setEndFrame(false)
+    }
+    setEndFrame(v){
+        this.props.purchaseStore.setEndFrame(v)
+    }
+    // 跳转商品采购
+    goToOrder(t){
+        this.$preload('name',t)
+        Taro.navigateTo({
+            url:'/pages/purchaseOrder/purchaseOrder'
+        })
+    }
     render(){
-       const { infoList } = this.props.purchaseStore
-       console.log(infoList)
+       const { infoList,isOpenEnd,context } = this.props.purchaseStore
        let findItem = infoList.slice().map((item,index) => {
            return (
-               <View className='list' key={index} onClick={this.goToInfo}>
-                   <View className='code'>{item.code}</View>
-                   <View className='title'>{item.title}</View>
+               <View className='list' key={index}>
+                   <View className='title'>
+                        <Text>{item.title}</Text>
+                        <Text className='unit'>{item.unit}</Text>
+                    </View>
                    <View className='node' style='margin-bottom:6px;'>
-                       <Text className='nodetxt'>要货数量: {item.count}</Text>
-                       <Text className='nodetxt'>门店数量: {item.shopCount}</Text>
+                       <Text>最高: {item.hight}</Text>
+                       <Text>最低: {item.low}</Text>
+                       <Text>平均: {item.ping}</Text>
                    </View>
                    <View className='node'>
-                       <Text className='nodetxt'>货品单位: {item.unit}</Text>
-                       <Text className='nodetxt'>货品规格: {item.hunit}</Text>
+                       <Text>要货门店: {item.shopCount}</Text>
+                       <Text>未下单门店: {item.noCount}</Text>
+                   </View>
+                   <View className='node' style='margin-top:18px;'>
+                        <AtButton disabled={item.flag} type={item.flag === true ? 'secondary' : 'primary'} circle className='btn' onClick={this.endEvent.bind(this,item.title,'22')} >结束采购</AtButton>
+                        <AtButton disabled={item.flag} type={item.flag === true ? 'secondary' : 'primary'} circle className='btn' onClick={this.goToInfo.bind(this,item.title)}>采购单</AtButton>
+                        <AtButton type='primary' circle className='btn' onClick={this.goToOrder.bind(this,item.title)}>商品采购</AtButton>
                    </View>
                </View>
            )
@@ -86,9 +117,16 @@ class Purchase extends PureComponent{
                          {findItem}
                     </ScrollView>
                 </View>
+
+                <AtModal isOpened={isOpenEnd} cancelText='取消' confirmText='确认'
+                  onClose={ this.endClose }
+                  onCancel={ this.endClose }
+                  onConfirm={ this.endConfirm }
+                  content= {context}
+                />
             </View>
        )
     }
 }
 
-export default Purchase as ComponentType<purchaseStateProps>
+export default Purchase as ComponentType<props>

@@ -32,6 +32,13 @@
     flex-wrap:wrap;
 }
 
+@mixin flex_sevent {
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+
+
 @mixin footer{
     position:fixed;
     left:0px;

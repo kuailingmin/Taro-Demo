@@ -1,0 +1,96 @@
+@import "../../styles/mix.scss";
+.order{
+    padding:0 30px;
+    .header{
+         @include flex_two;
+         color: #999;
+         font-size: 28px;
+         margin-bottom: 60px;
+    }
+    .main{
+        @include flex_two;
+        border-bottom: 1px solid #E5E5E5;
+        font-size: 28px;
+        padding-bottom: 25px;
+        margin-top: 27px;
+        .title{
+            color: #222;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .op{
+            @include flex_sevent;
+            width: 80%;
+            .unit{
+                color: #555;
+            }
+            .inpt{
+                text-align: right;
+                margin-right: 10px;
+                color: #555;
+            }
+        }
+    }
+    .type {
+        width: 100%;
+        .itemdiv{
+            @include flex_six;
+            font-size: 28px;
+            padding: 20px 0;
+            .txt{
+                color: #222;
+                font-size:30rpx;
+                font-weight:bold;
+            }
+            .picker{
+            width: 70%;
+            height: 50px;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            }
+        }
+    }
+    .find{
+        @include flex_two;
+        margin-top: 20px;
+        .left{
+            @include flex_four;
+            height: 60px;
+            background: #F2F2F2;
+            border-radius:10px;
+            .icon{
+              font-size:30px;
+              color: #bbb;
+              margin:5px 10px 0 29px;
+            }
+            .inputfont{
+              font-size:30px;
+              color: #777;
+              width: 100%;
+            }
+        }
+    }
+    .info{
+        @include flex_six;
+        margin-top: 50px;
+        .txt{
+            width: 100%;
+            font-size: 28px;
+            color: #555;
+            margin-bottom: 35px;
+        }
+    }
+    .bottom{
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        z-index: 9;
+        padding-bottom: 30px;
+        background:#fff;
+        @include flex_three;
+        &-btn{
+            width: 600px;
+        }
+    }
+}

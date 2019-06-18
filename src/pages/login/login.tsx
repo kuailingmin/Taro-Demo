@@ -79,25 +79,27 @@ class Login extends Component {
       miniProgramCode: code,
       password: this.props.loginStore.passWord
     }
-
-    taroAjax(Taro,getGlobal('url') + '/login',data).then(res => {
-      console.log(res)
-      if(res.success){
-        Taro.setStorageSync('loginStatus',true)
-        Taro.setStorageSync('token',res.model.token)
-        //登录成功跳转首页
-        Taro.reLaunch({
-          url:'/pages/index/index?id=1'
-        })
-      } else {
-        console.log(1)
-        Taro.showToast({
-          title: res.errorMessage,
-          icon: 'none',
-          duration: 2000
-        })
-      }
+    Taro.reLaunch({
+      url:'/pages/index/index?id=1'
     })
+    // taroAjax(Taro,getGlobal('url') + '/login',data).then(res => {
+    //   console.log(res)
+    //   if(res.success){
+    //     Taro.setStorageSync('loginStatus',true)
+    //     Taro.setStorageSync('token',res.model.token)
+    //     //登录成功跳转首页
+    //     Taro.reLaunch({
+    //       url:'/pages/index/index?id=1'
+    //     })
+    //   } else {
+    //     console.log(1)
+    //     Taro.showToast({
+    //       title: res.errorMessage,
+    //       icon: 'none',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
   }
  
   render () {
